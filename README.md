@@ -1,45 +1,41 @@
-# checkIn-API
+# CheckIn-API 
 
-A lightweight Node.js and SQLite3 backend for tracking daily mood and productivity
+A full stack personal tracking application built with **Node.js**, **Express**, and **SQLite**. This project allows users to log daily moods and productivity scores via an API and visualize them through a clean, modern web dashboard
 
-<h2>Overview</h2>
+<h2>Features</h2>
 
-CheckIn-API is a RESTful backend service built as part of a 30-day coding challenge. It allows users to log their daily status, including mood and productivity levels, storing them securely in a local SQLite database. The project demonstrates a clear separation of concerns between server logic and database management.
+- Full-Stack Integration: Connects a vanilla JS frontend to a Node.js backend
+
+- Persistent Storage: Data is stored locally in a SQLite database
+
+- Search Filtering: Filter logs by mood in real time on the dashboard
+
+- Technical Insights: Toggleable views to see underlying database IDs
 
 <h2>Project Structure</h2>
 
 <pre>
 checkIn-API/
 ├── data/
-│ └── test.sqlite       # SQLite database file (auto-generated)
+│   └── test.sqlite          # SQLite database storage
+├── public/
+│   ├── index.html           # Dashboard UI
+│   ├── style.css            # Custom RGB-based styling
+│   └── script.js            # Frontend logic & API fetching
 ├── src/
-│ ├── database.js       # Database schema and worker functions
-│ └── server.js         # Express server and API routes
-├── node_modules/       # Project dependencies
-├── .gitignore          # Files to exclude from version control
-├── package.json        # Project metadata and scripts
-└── package-lock.json   # Dependency lock file
+│   ├── database.js          # SQLite connection & schema
+│   └── server.js            # Express API routes & middleware
+├── .gitignore               # Files to exclude from Git (node_modules, etc)
+├── LICENSE                  # Project license
+├── package.json             # Project dependencies
+└── README.md                # Project documentation
 </pre>
-
-<h2>Features</h2>
-
-- Persistent Storage: Uses SQLite3 to save data locally
-  
-- RESTful Endpoints:
-  
-   - GET / : Welcome message.
-
-   - GET /history : Retrieve all past check-ins.
-
-   - POST /checkin : Log a new mood and productivity score.
-
-- Automatic Timestamps: Database handles record creation times automatically
 
 <h2>Getting Started</h2>
 
 <h3>Prerequisites</h3>
 
-Node.js installed on your machine.
+Node.js installed on your machine
 
 <h3>Installation</h3>
 
@@ -53,26 +49,68 @@ Install dependencies: npm install
 
 <pre>node src/server.js</pre>
 
-<h2>API Usage Examples</h2>
+The server will start on http://localhost:3000
 
-Log a New Check-In (PowerShell)
+<h3>4. Viewing the Dashboard</h3>
 
-<pre>Invoke-RestMethod -Uri "http://localhost:3000/checkin" -Method Post -Body '{"mood": "Ecstatic", "productivity": 10}' -ContentType "application/json"</pre>
+Open your browser and navigate to:
+
+http://localhost:3000
+
+<h2>API Endpoints</h2>
+
+ <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GET</td>
+        <td>/history</td>
+        <td>Returns all check-in logs as JSON</td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/checkin</td>
+        <td>Saves a new mood and productivity score</td>
+      </tr>
+      <tr>
+        <td>DELETE</td>
+        <td>/checkin/:id</td>
+        <td>Removes a specific log by ID</td>
+      </tr>
+    </tbody>
+  </table>
+
+<h2>Example POST Request (PowerShell)</h2>
+
+<pre>
+  Invoke-RestMethod -Uri http://localhost:3000/checkin `
+  -Method Post `
+  -Body '{"mood": "Productive", "productivity": 9}' `
+  -ContentType "application/json"
+</pre>
 
 <h2>Output</h2>
 
-![](https://i.ibb.co/9khY0sd5/Screenshot-2026-04-13-130747.png)
+<h3>From Terminal</h3>
 
-![](https://i.ibb.co/fY0wN1Y9/Screenshot-2026-04-13-130812.png)
-  
-<h3>View History</h3>
+![](https://i.ibb.co/dJ2tR75c/Screenshot-2026-04-13-185549.png)
 
-Simply navigate to http://localhost:3000/history in any web browser.
+<h3>From The Browser</h3>
 
-<h2>Future Roadmap</h2>
+![](https://i.ibb.co/Q34PzWGT/Screenshot-2026-04-13-185609.png)
 
-- Add data validation (ensure productivity is between 1-10).
-  
-- Implement a DELETE route for removing entries.
-  
-- Build a frontend interface (HTML/CSS) to visualize the data.
+![](https://i.ibb.co/7Jv2vWdV/Screenshot-2026-04-13-185626.png)
+
+![](https://i.ibb.co/rK9PRfFz/Screenshot-2026-04-13-185643.png)
+
+![](https://i.ibb.co/YBRBntY0/Screenshot-2026-04-13-185702.png)
+
+<h2>License</h2>
+
+This project is licensed under the LICENSE file
