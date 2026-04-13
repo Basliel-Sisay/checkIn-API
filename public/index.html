@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckIn Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>📊 Personal Check-In History</h1>
+            <p>Tracking mood and productivity over time</p>
+        </header>
+        <section class="controls">
+            <input id="search" class="search-bar" placeholder="Search by mood (e.g., Happy, Tired)...">
+        </section>
+        <div id="recipes" class="log-grid">
+            <div class="loading-state">Connecting to SQLite database...</div>
+        </div>
+        <button class="btn" onclick="loadHistory()">🔄 Refresh Data</button>
+    </div>
+</body>
+</html>
